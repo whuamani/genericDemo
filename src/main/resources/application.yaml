@@ -1,0 +1,55 @@
+# Perfil Dev local por defecto
+spring:
+  webflux:
+    base-path: /generic  # context path en webflux
+  profiles.active: dev # perfile dev por defecto
+  application:
+    name: genericDemo  # buena practica: el mimso nombre del artifac-id del pom
+  output:
+    ansi:
+      enabled: ALWAYS # colores para el log : ALWAYS, NEVER or DETECT.
+  jpa:
+    #  database: SQL server
+    show-sql: true
+    hibernate:
+      # Evitar que Hibernate convierta camelCase a snake_case:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      # (Opcional)para queJPA valide el schema.te dirá al arrancar si falta una columna o hay desajustes entre entidad y tabla
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        format_sql: true
+
+  datasource:
+    #platform: postgres
+    url: jdbc:sqlserver://localhost:1433;databaseName=BD_CLIENTES;trustServerCertificate=true;
+    username: userWill
+    password: 9rvkygm1aq6235u18i15
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+server:
+  port: 8085  # puerto de escucha del servidor
+
+# nivel de log por paquetes: DEBUG(todo),INFO,WARN,ERROR FATAL
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: trace
+    pe.pichincha.genericDemo: DEBUG
+
+  pattern:
+    # estructira de los mensajes de log en la consola y en el archivo
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+    # %d{yyyy-MM-dd HH:mm:ss.SSS} [%t]  %highlight{%level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue}  ${hostName} ======>  %-30.50C{4} --> (%F:%L) --> %m%n%ex
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+    #nombre del archivo generado
+    file.name: 'C:\demos\logs\generico.log'
+
+# pintado de errorres en el response activado
+printStackTrace: true
+
+
