@@ -22,16 +22,16 @@ public class Activity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ActivityId",updatable = false)
+    @Column(name = "Activity_Id",updatable = false)
     private Integer activityId;
 
-    @Column(name = "ActivityName")
+    @Column(name = "Activity_Name")
     private String activityName;
 
-    @Column(name = "ActivityCode")
+    @Column(name = "Activity_Code")
     private Integer activityCode;
 
-    @Column(name = "StepId")
+    @Column(name = "Step_Id")
     private Integer stepId;
 
     @Column(name = "path")
