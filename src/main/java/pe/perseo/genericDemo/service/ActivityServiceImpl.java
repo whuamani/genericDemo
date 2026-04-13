@@ -6,10 +6,18 @@ import pe.perseo.genericDemo.dao.ActivityRepository;
 import pe.perseo.genericDemo.dto.ActivityDTO;
 import reactor.core.publisher.Flux;
 
+/**
+ * Representa una clase de servicio para las actividades.
+ * Permite realizar operaciones CRUD con las actividades.
+ *
+ * @author Wilber H.
+ * @version 1.0
+ */
 @Log4j2
 @Service
 public class ActivityServiceImpl implements ActivityService{
 
+    //? inyectando via constructor la interface ActivityRepository
     private final ActivityRepository activityRepository;
 
     public ActivityServiceImpl(ActivityRepository activityRepository)
@@ -17,7 +25,12 @@ public class ActivityServiceImpl implements ActivityService{
         this.activityRepository = activityRepository;
     }
 
-
+    /**
+     * Lista todas las actividades.
+     *
+     * @param ND
+     * @return Listado de actidades
+     */
     @Override
     public Flux<ActivityDTO> consultarTodos()
     {
